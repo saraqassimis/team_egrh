@@ -7,6 +7,7 @@ import controller.util.PaginationHelper;
 import session.DiplomeFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -34,6 +35,10 @@ public class DiplomeController implements Serializable {
     public DiplomeController() {
     }
 
+      public List<Diplome> getAllDiplomeOfEmploye(Employe e){
+     
+     return getFacade().loadDiplomes(e);
+ }
     public String delete(Diplome diplome){
       
        System.out.println("a");

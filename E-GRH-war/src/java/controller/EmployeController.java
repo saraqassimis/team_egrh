@@ -7,6 +7,7 @@ import controller.util.PaginationHelper;
 import session.EmployeFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -30,6 +31,8 @@ public class EmployeController implements Serializable {
     private session.EmployeFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private int indice;
+    private List<Employe> employes=new ArrayList< Employe>();
 
     public EmployeController() {
     }
@@ -52,13 +55,45 @@ public class EmployeController implements Serializable {
         return "/image/ProfilImage";
       }
       
+   
+      
       public String detailsEvaluation (Employe employe){
           employe.setEvalueremployeList(ejbFacade.loadEvaluations(employe));
           System.out.println("*********la requet f le controller "+ejbFacade.loadEvaluations(employe));
            current=employe;
         return "/evaluationemploye/ListEvaluations";
       }
-          
+      
+          public String delete(Employe employe){
+      
+    
+    getFacade().remove(employe);
+    
+     recreatePagination();
+        recreateModel();
+      JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DiplomeDeleted"));
+ 
+    return "List";
+}
+public String editeView(Employe employe){
+   
+   current=employe;
+   
+   indice=ejbFacade.findAll().indexOf(employe);
+ 
+    return "Edit";
+}
+
+    public List<Employe> getEmployes() {
+        return employes;
+    }
+
+    public void setEmployes(List<Employe> employes) {
+        this.employes = employes;
+    }
+    
+
+
     public List<Poste> getPostOfSevice(){
           return ejbFacade.findPostOFservice(current.getService());
       }

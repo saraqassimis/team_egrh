@@ -154,15 +154,25 @@
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="#{request.contextPath}/resources/images/avatar1.jpg"/>
-                <span class="username"><h:outputText value="#{utilisateurController.current.employe.nom}"/></span>
+                  <h:dataTable value="#{imageController.getImageOfEmploye(utilisateurController.current.employe)}" var="item" class="text " >
+                               <h:column>
+                           
+                            <h:graphicImage value="/egrh/#{item.fileName}"/>
+                        </h:column>
+                                    
+                      <h:column>
+                <span class="username"><h:outputText value="#{item.employe.nom}"/></span>
                 <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu extended logout">
+                     
+                      </h:column>
+                 </h:dataTable>
+                 <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
                  <li><a href="#{request.contextPath}/faces/logout.xhtml"><i class="fa fa-key"></i>Deconnexion </a></li>
             </ul>
+            </a>
+            
         </li>
         <!-- user login dropdown end -->
         <li>
