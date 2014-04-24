@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditImageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+              
+        <div class="col-md-12">
+            <section class="panel">  
+        <div class="panel-body profile-information">
+       
+            
+                 
+                       <div class="col-md-3">
+                           <div class="profile-pic text-center">
+                                <h:dataTable value="#{imageController.getImageOfEmploye(employeController.selected)}" var="item" class="text " >
+                               <h:column>
+                           
+                            <h:graphicImage value="/egrh/#{item.fileName}"/>
+                        </h:column>
+                                    
+                                </h:dataTable>
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                           <div class="profile-desk">
+                               <h:dataTable value="#{emploiprecedentController.getAllEmploisPrecedentOfEmploye(employeController.selected)}" var="item" class="text " >
+                               <h:column>
+                                   <h1>
+                                   <h:outputText value="#{item.employe.nom}"/>
+                                   </h1>
+                        </h:column> 
+                                       <h:column>
+                                          <br></br>
+                                           <h1>
+                                               <h:outputText value="#{item.employe.prenom}"/>
+                                           </h1>
+                        </h:column>
+                                </h:dataTable>
+                               <span class="text-muted"><h:dataTable value="#{emploiprecedentController.getAllEmploisPrecedentOfEmploye(employeController.selected)}" var="item" class="text " >
+                               <h:column>
+                           
+                                   <h:outputText value="#{item.employe.poste.libelle}"/>
+                        </h:column>
+                                      
+                                </h:dataTable></span>
+                             
+                               <a href="#" class="btn btn-primary">View Profile</a>
+                           </div>
+                       </div>
+                       <div class="col-md-3">
+                           <div class="profile-statistics">
+                               <h1>1240</h1>
+                               <p>This Week Sales</p>
+                               <h1>DH<h:dataTable value="#{emploiprecedentController.getAllEmploisPrecedentOfEmploye(employeController.selected)}" var="item" class="text " >
+                               <h:column>
+                           
+                                   <h:outputText value="#{item.employe.poste.salaire}"/>
+                        </h:column>
+                                      
+                                </h:dataTable></h1>
+                               
+                               <ul>
+                                   <li>
+                                       <a href="www.facebook.com">
+                                           <i class="fa fa-facebook"></i>
+                                       </a>
+                                   </li>
+                                   <li class="active">
+                                       <a href="#">
+                                           <i class="fa fa-twitter"></i>
+                                       </a>
+                                   </li>
+                                   <li>
+                                       <a href="#">
+                                           <i class="fa fa-google-plus"></i>
+                                       </a>
+                                   </li>
+                               </ul>
+                           </div>
+                       </div>
+                     </div>
+            </section> 
+                    </div>
+                  <div class="col-md-12">
+                <section class="panel">
+                    <header class="panel-heading tab-bg-dark-navy-blue">
+                        <ul class="nav nav-tabs nav-justified ">
+                            <li class="active">
+                                <a data-toggle="tab" href="#overview">
+                                    Diplomes obtenus
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#job-history">
+                                    Emplois precedent
+                                </a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#contacts">
+                                    Contacts
+                                </a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#settings">
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content tasi-tab">
+                            <div id="overview" class="tab-pane active">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="recent-act">
+                                            <h1>Diplomes</h1>
+                                            <div class="activity-icon terques">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+                                            <div class="activity-desk">
+                                                <h2>1 Hour Ago</h2>
+                                                
+                                            </div>
+                                            <div class="activity-icon red">
+                                                <i class="fa fa-beer"></i>
+                                            </div>
+                                            <div class="activity-desk">
+                                                <h2 class="red">2 Hour Ago</h2>
+                                               
+                                            </div>
+                                            <div class="activity-icon purple">
+                                                <i class="fa fa-tags"></i>
+                                            </div>
+                                            <div class="activity-desk">
+                                                <h2 class="purple">today evening</h2>
+                                                
+                                                <div class="photo-gl">
+                                                    <a href="#">
+                                                        <img src="images/sm-img-1.jpg" alt=""/>
+                                                    </a>
+                                                    <a href="#">
+                                                        <img src="images/sm-img-2.jpg" alt=""/>
+                                                    </a>
+                                                    <a href="#">
+                                                        <img src="images/sm-img-3.jpg" alt=""/>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="activity-icon green">
+                                                <i class="fa fa-map-marker"></i>
+                                            </div>
+                                            <div class="activity-desk">
+                                                <h2 class="green">yesterday</h2>
+                                             
+                                                <div class="loc-map">
+                                                    location map goes here
+                                                </div>
+                                            </div>
+
+                                            <div class="activity-icon yellow">
+                                                <i class="fa fa-user-md"></i>
+                                            </div>
+                                            <div class="activity-desk">
+                                                <h2 class="yellow">12 december 2013</h2>
+                                                
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                            <div id="job-history" class="tab-pane ">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="timeline-messages">
+                                           
+                                            <h3>Take a Tour</h3>
+                                            <!-- Comment -->
+                                            <div class="msg-time-chat ">
+                                                <div class="message-body msg-in">
+                                                   
+                                                    
+                                                        
+                                                        
+                                                        
+                                                        <h:dataTable value="#{emploiprecedentController.getAllEmploisPrecedentOfEmploye(employeController.selected)}" var="item" class="text "> 
+                                                           
+                                                            <h:column >              
+                            <div class="first">
+                                <h:outputText value="#{item.dateDebut}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                             
+               </div>        
+                        </h:column>
+                                                          
+                                                            
+                                                           <h:column>
+                           <div class="second bg-terques ">
+                            <h:outputText value="#{item.post}"/>
+                            </div>
+                        </h:column>
+                                                            <h:column>
+                           <div class="second bg-terques ">
+                               <h:outputText value="à "/>
+                               <h:outputText value="#{item.entreprise}"/>
+                            </div>
+                        </h:column>
+                                     </h:dataTable>                       
+                                                        
+                                                  
+                                                </div>
+                                            </div>
+                                            <!-- /comment -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="contacts" class="tab-pane ">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="prf-contacts">
+                                            <h2> <span><i class="fa fa-map-marker"></i></span> location</h2>
+                                            <div class="location-info">
+                                               
+                                            </div>
+                                            <h2> <span><i class="fa fa-phone"></i></span> contacts</h2>
+                                            <div class="location-info">
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!--location goes here-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="settings" class="tab-pane ">
+                                <div class="position-center">
+                                    <div class="prf-contacts sttng">
+                                        <h2>  Personal Information</h2>
+                                    </div>
+        
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

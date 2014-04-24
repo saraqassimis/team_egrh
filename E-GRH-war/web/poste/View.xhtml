@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPosteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPosteLabel_id}"/>
+                    <h:outputText value="#{posteController.selected.id}" title="#{bundle.ViewPosteTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPosteLabel_libelle}"/>
+                    <h:outputText value="#{posteController.selected.libelle}" title="#{bundle.ViewPosteTitle_libelle}"/>
+                    <h:outputText value="#{bundle.ViewPosteLabel_salaire}"/>
+                    <h:outputText value="#{posteController.selected.salaire}" title="#{bundle.ViewPosteTitle_salaire}"/>
+                    <h:outputText value="#{bundle.ViewPosteLabel_heurParJour}"/>
+                    <h:outputText value="#{posteController.selected.heurParJour}" title="#{bundle.ViewPosteTitle_heurParJour}"/>
+                    <h:outputText value="#{bundle.ViewPosteLabel_service}"/>
+                    <h:outputText value="#{posteController.selected.service}" title="#{bundle.ViewPosteTitle_service}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{posteController.destroyAndView}" value="#{bundle.ViewPosteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPosteEditLink}"/>
+                <br />
+                <h:commandLink action="#{posteController.prepareCreate}" value="#{bundle.ViewPosteCreateLink}" />
+                <br />
+                <h:commandLink action="#{posteController.prepareList}" value="#{bundle.ViewPosteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPosteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEmployeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false"  value="Liste des emploés est vide . Veuillez ajouter un enregistrement " rendered="#{employeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{employeController.items.rowCount > 0}">
+                     <div class="content-box-large">
+
+                    <div class="panel-body">
+                        <fieldset>
+                            <legend>Liste des employés</legend><br></br>
+                             <div  class="well">
+                                        <h:commandLink  class="btn btn-lg btn-block btn-default" action="#{employeController.prepareCreate}"><label>Ajouter un employé </label></h:commandLink>
+               </div> 
+                            
+                            <br /> <br />
+
+                            <h:dataTable value="#{employeController.items}" var="item" border="0" class="table table-bordered table-striped dynamic-table">
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="nom"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nom}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="prenom"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.prenom}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="poste"/>
+                                    </f:facet>
+                                    <h:outputText value="#{employeController.selected.poste.libelle}"/>
+                                </h:column>
+                                
+                                 
+                                
+                                
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Emplois precedents"/>
+                                    </f:facet>
+                                
+                                    <h:commandLink class="btn btn-primary large" action="#{employeController.detailEmplois(item)}"><i class=" glyphicon glyphicon-list-alt" style="font-size:20px;"/>Emplois</h:commandLink>
+
+
+                                </h:column>
+                                 <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Evaluations"/>
+                                    </f:facet>
+                                
+                                     <h:commandLink class="btn btn-primary large" action="#{employeController.detailsEvaluation(item)}"><i class=" glyphicon glyphicon-list-alt" style="font-size:20px;"/>Evaluer</h:commandLink>
+
+
+                                </h:column>
+                                 <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Diplomes"/>
+                                    </f:facet>
+                                 
+                                   <h:commandLink class="btn btn-primary" action="#{employeController.detailDiplomes(item)}"><i class=" glyphicon glyphicon-list-alt" style="font-size:20px;"/></h:commandLink>
+
+
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Profil"/>
+                                    </f:facet>
+                                 
+                                    <h:commandLink class="btn btn-primary" action="#{employeController.detailEmploye(item)}"><i class=" glyphicon glyphicon-list-alt" style="font-size:20px;"/></h:commandLink>
+
+
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink class="btn btn-default" action="#{employeController.prepareView}" ><i class=" glyphicon glyphicon-eye-open " style="font-size:20px;"/></h:commandLink>
+                                    <h:outputText value="     "/>
+                                    <h:outputText value="     "/>
+                                    <h:commandLink class="btn btn-primary" action="#{employeController.prepareEdit}"><i class=" glyphicon glyphicon-pencil " style="font-size:20px;"/></h:commandLink>
+                                  
+                                </h:column>
+                            </h:dataTable>
+
+                        </fieldset>
+                    </div>
+                </div>
+                </h:panelGroup>
+             <div  class="well">
+                                        <h:commandLink  class="btn btn-lg btn-block btn-default" action="#{employeController.prepareCreate}"><label>Ajouter un employé </label></h:commandLink>
+               </div> 
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

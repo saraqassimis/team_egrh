@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUtilisateurTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-box-large">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:form>
+
+                            <fieldset >
+
+                                <legend>Apréciation de la performance</legend><br></br>
+                                <div  class="well">
+                                    <h:link  class="btn btn-lg btn-block btn-default" outcome="/employe/Listappreciation" ><label>List des employés </label></h:link>
+                                </div> 
+                                <div class="span7">
+                                    <div class="row">
+                                        <fieldset >
+
+                                            <legend>AJOUT D’ÉVALUATION</legend><br></br>
+                                            <div class="col-md-6 " ><i class="glyphicon glyphicon-calendar"></i>
+                                                <label >Date evaluation *</label>
+
+                                                <h:inputText class="form-control datep" id="dateEvaluation" value="#{evaluationemployeController.selected.date_evaluation}" title="date_evaluation" >
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                </h:inputText>
+
+                                                <p class="note">
+                                                    Data format **/**/****
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6 " >
+                                             
+                                                <label >Evaluation faite par :</label>
+                                                <h:inputText id="nom" value="#{evaluationemployeController.selected.nom_complet}" title="nom" class="form-control" />
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <fieldset >
+
+                                            <legend>Attitudes Et Aptittudes de l'employé</legend><br></br>
+                                            <p>
+                                                Veuillez cochez, s'il vous plait , le chiffre correspondant à votre évaluation pour chacune des attitudes ou aptitudes présentées ci-dessous.
+                                                <br></br>L'échelle des critères est la suivante:  
+                                                <p class=" pull-right">
+                                                    1. Tout à fait insatisfait. <br></br>2. Nécessite certains ajustements.<br></br>3. Satisgaisant. <br></br>4. Trés satisfaisant.<br></br>NAP. Ne s'applique pas.
+                                                </p>
+
+                                            </p>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th> </th>
+                                                        <th>Cochez la case appropriée</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+
+                                                        <td><label >QUALITÉ</label> <br></br>
+                                                            - Effectue un travail à la hauteur de ses connaissances et compétences<br></br> - Prépare efficacement le matériel et les outils nécessaires<br></br> - Présente un travail soigné</td>
+                                                        <td> <h:selectOneRadio  value="#{evaluationemployeController.selected.qualite}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label >RYTHME DE TRAVAIL</label> <br></br>
+                                                            - Répond aux exigences de la tâche dans les temps requis<br></br> - Exécute efficacement un travail  </td>
+                                                        <td> <h:selectOneRadio  value="#{evaluationemployeController.selected.rythme_travail}" >
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label >CAPACITÉ D’ADAPTATION</label> <br></br>
+                                                            - S’intègre à l’équipe de travail<br></br> - S’adapte aux directives et règles de l’unité <br></br> - Assimile rapidement les nouveautés de son travail <br></br>- Réagit calmement aux différentes situations (habituelles ou non) 
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.capacite_adaptation}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label >AUTONOMIE</label> <br></br>
+                                                            - Établit ses priorités en fonction des échéances<br></br>- Prend des initiatives face aux imprévus<br></br> - Porte un regard critique sur son travail 
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.autonomie}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label >DISCRÉTION - CONFIDENTIALITÉ</label> <br></br>
+                                                            - Fait preuve de discrétion
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.discretion}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label >ESPRIT D’INITIATIVE ET D’INNOVATION</label> <br></br>
+                                                            - Pose des questions pour mieux connaître et comprendre son travail<br></br>- Propose des méthodes, des idées ou des techniques pour augmenter son efficacité
+ou celle de l’unité<br></br>- Entreprend spontanément des actions 
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.esprit_inniciative}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label >MÉTHODE ET ORDRE</label> <br></br>
+                                                            - Trouve facilement les choses grâce à son système de classification<br></br>- Travaille de façon méthodique
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.methode_orde}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label >PONCTUALITÉ</label> <br></br>
+                                                            - Respecte les horaires de travail<br></br>- Justifie ses retards
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.ponctualite}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label>RELATIONS INTERPERSONNELLES</label> <br></br>
+                                                            - Adopte un comportement courtois<br></br>- Établit ou maintient un climat de travail agréable<br></br>- Se montre disponible et ouvert 
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.relation_interpersonnelles}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label>SENS DES RESPONSABILITÉS</label> <br></br>
+                                                            - Prévient le plus tôt possible de son absence ou de son retard<br></br>- En cas d’absence prévue, informe de l’état des dossiers en traitement, de la place des choses et des travaux à faire<br></br>- Avise une personne de son unité de ses éloignements temporaires ou significatifs de son poste de travail 
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.sens_responsabilite}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label >COMMUNICATION</label> <br></br>
+                                                            - Remet des documents bien présentés, structurés, concis et complets<br></br>- Exprime ses idées clairement et dans un bon français<br></br>- Écoute attentivement et saisit bien tous les éléments du discours<br></br>- Possède un vocabulaire riche et précis, une syntaxe et une orthographe adéquates. 
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneRadio value="#{evaluationemployeController.selected.communication}">
+                                                                <f:selectItem itemValue="1" itemLabel="1" />
+                                                                <f:selectItem itemValue="2" itemLabel="2" />
+                                                                <f:selectItem itemValue="3" itemLabel=" 3" />
+                                                                <f:selectItem itemValue="4" itemLabel=" 4" />
+                                                                <f:selectItem itemValue="NAP" itemLabel="NAP" />
+                                                            </h:selectOneRadio>
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </fieldset>
+                                    </div> 
+
+                                    <fieldset >
+
+                                        <legend>CONTEXTE D’ÉVALUATION</legend><br></br>
+                                        <div class="col-md-6 ">
+                                        <label for="example-f" >En tenant compte des exigences du poste , le degré de supervision requis pour cette personne est :</label>
+                                        
+                                     
+            <p:rating id="note" value="#{evaluationemployeController.selected.note}" stars="10" cancel="True" />
+                                            <br></br><br></br><br></br>
+            
+        </div> <p class="col-md-6 pull-right">
+                                            [7 10] élevé (lacunes majeures ou erreurs fréquentes au niveau de la qualité du travail)<br></br>[3 6] moyen (relevant normalement de la tâche du gestionnaire envers son personnel)<br></br>[0 3] bas (la qualité du travail est supérieure)<br></br>
+                                        </p>
+
+
+                                        <div class="col-md-12 " >
+                                            <br></br>
+                                            <label >Commentaires du ou de la supérieur(e) immédiat(e)Faits ou réalisations dignes de mention.</label>
+
+                                            <h:inputTextarea class="form-control" id="commentaire" value="#{evaluationemployeController.selected.commentaire}" title="commentaire" >
+
+                                            </h:inputTextarea>
+
+
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+
+                                <div class="col-md-12 ">
+                                    <br />
+
+                                    <h:commandLink  class="btn btn-lg btn-block btn-primary" action="#{evaluationemployeController.create(employeController.selected)}" >Save </h:commandLink>
+
+                                </div>
+
+
+                            </fieldset>
+
+                        </h:form>
+                        <script>
+                            $(".datep").datepicker();
+                            $(".datep").datepicker("option", "dateFormat", "dd/mm/yy");
+                        </script>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

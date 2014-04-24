@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSessionfTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSessionfLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{sessionfController.selected.id}" title="#{bundle.EditSessionfTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditSessionfLabel_dateFin}" for="dateFin" />
+                    <h:inputText id="dateFin" value="#{sessionfController.selected.dateFin}" title="#{bundle.EditSessionfTitle_dateFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSessionfLabel_dateDebut}" for="dateDebut" />
+                    <h:inputText id="dateDebut" value="#{sessionfController.selected.dateDebut}" title="#{bundle.EditSessionfTitle_dateDebut}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSessionfLabel_formation}" for="formation" />
+                    <h:selectOneMenu id="formation" value="#{sessionfController.selected.formation}" title="#{bundle.EditSessionfTitle_formation}" >
+                        <f:selectItems value="#{formationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSessionfLabel_planformation}" for="planformation" />
+                    <h:selectOneMenu id="planformation" value="#{sessionfController.selected.planformation}" title="#{bundle.EditSessionfTitle_planformation}" >
+                        <f:selectItems value="#{planformationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{sessionfController.update}" value="#{bundle.EditSessionfSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSessionfViewLink}"/>
+                <br />
+                <h:commandLink action="#{sessionfController.prepareList}" value="#{bundle.EditSessionfShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSessionfIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

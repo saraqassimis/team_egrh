@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCompetenceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCompetenceLabel_id}"/>
+                    <h:outputText value="#{competenceController.selected.id}" title="#{bundle.ViewCompetenceTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCompetenceLabel_libelle}"/>
+                    <h:outputText value="#{competenceController.selected.libelle}" title="#{bundle.ViewCompetenceTitle_libelle}"/>
+                    <h:outputText value="#{bundle.ViewCompetenceLabel_categorie}"/>
+                    <h:outputText value="#{competenceController.selected.categorie}" title="#{bundle.ViewCompetenceTitle_categorie}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{competenceController.destroyAndView}" value="#{bundle.ViewCompetenceDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCompetenceEditLink}"/>
+                <br />
+                <h:commandLink action="#{competenceController.prepareCreate}" value="#{bundle.ViewCompetenceCreateLink}" />
+                <br />
+                <h:commandLink action="#{competenceController.prepareList}" value="#{bundle.ViewCompetenceShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCompetenceIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBesoinformationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBesoinformationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{besoinformationController.selected.id}" title="#{bundle.EditBesoinformationTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditBesoinformationLabel_libelle}" for="libelle" />
+                    <h:inputText id="libelle" value="#{besoinformationController.selected.libelle}" title="#{bundle.EditBesoinformationTitle_libelle}" />
+                    <h:outputLabel value="#{bundle.EditBesoinformationLabel_competenceADevelloppe}" for="competenceADevelloppe" />
+                    <h:inputText id="competenceADevelloppe" value="#{besoinformationController.selected.competenceADevelloppe}" title="#{bundle.EditBesoinformationTitle_competenceADevelloppe}" />
+                    <h:outputLabel value="#{bundle.EditBesoinformationLabel_resultatsAttendus}" for="resultatsAttendus" />
+                    <h:inputText id="resultatsAttendus" value="#{besoinformationController.selected.resultatsAttendus}" title="#{bundle.EditBesoinformationTitle_resultatsAttendus}" />
+                    <h:outputLabel value="#{bundle.EditBesoinformationLabel_commentaire}" for="commentaire" />
+                    <h:inputText id="commentaire" value="#{besoinformationController.selected.commentaire}" title="#{bundle.EditBesoinformationTitle_commentaire}" />
+                    <h:outputLabel value="#{bundle.EditBesoinformationLabel_dateDemande}" for="dateDemande" />
+                    <h:inputText id="dateDemande" value="#{besoinformationController.selected.dateDemande}" title="#{bundle.EditBesoinformationTitle_dateDemande}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditBesoinformationLabel_employe}" for="employe" />
+                    <h:selectOneMenu id="employe" value="#{besoinformationController.selected.employe}" title="#{bundle.EditBesoinformationTitle_employe}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{besoinformationController.update}" value="#{bundle.EditBesoinformationSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBesoinformationViewLink}"/>
+                <br />
+                <h:commandLink action="#{besoinformationController.prepareList}" value="#{bundle.EditBesoinformationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditBesoinformationIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

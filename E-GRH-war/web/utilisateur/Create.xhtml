@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUtilisateurTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUtilisateurLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{utilisateurController.selected.id}" title="#{bundle.CreateUtilisateurTitle_id}" />
+                     <h:outputLabel value="employe" for="employe" />
+                    <h:selectOneMenu id="session" value="#{utilisateurController.selected.employe}" title="#{bundle.CreateInscriptionTitle_session}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateUtilisateurLabel_login}" for="login" />
+                    <h:inputText id="login" value="#{utilisateurController.selected.login}" title="#{bundle.CreateUtilisateurTitle_login}" />
+                    <h:outputLabel value="#{bundle.CreateUtilisateurLabel_motdepasse}" for="motdepasse" />
+                    <h:inputText id="motdepasse" value="#{utilisateurController.selected.motdepasse}" title="#{bundle.CreateUtilisateurTitle_motdepasse}" />
+                    <h:outputLabel value="#{bundle.CreateUtilisateurLabel_confirmation}" for="confirmation" />
+                    <h:inputText id="confirmation" value="#{utilisateurController.selected.confirmation}" title="#{bundle.CreateUtilisateurTitle_confirmation}" />
+                    <h:outputLabel value="#{bundle.CreateUtilisateurLabel_droit}" for="droit" />
+                    <h:selectOneMenu id="droit" value="#{utilisateurController.selected.droit}" title="#{bundle.CreateUtilisateurTitle_droit}" >
+                        <f:selectItems value="#{droitController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{utilisateurController.create}" value="#{bundle.CreateUtilisateurSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{utilisateurController.prepareList}" value="#{bundle.CreateUtilisateurShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUtilisateurIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

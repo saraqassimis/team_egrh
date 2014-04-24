@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="ThemeBucket"/>
+    <link rel="shortcut icon" href="images/favicon.html"/>
+
+    <title>Login</title>
+    <!--Core CSS -->
+    <h:outputStylesheet name="bs3/css/bootstrap.min.css"/>
+    <h:outputStylesheet name="css/bootstrap-reset.css" />
+    <h:outputStylesheet name="assets/font-awesome/css/font-awesome.css" />
+    <!-- Custom styles for this template -->
+    <h:outputStylesheet name="css/style.css"/>
+    <h:outputStylesheet name="css/style-responsive.css" /> 
+    <script src="#{request.contextPath}/resources/js/lib/jquery.js"></script>
+    <script src="#{request.contextPath}/resources/bs3/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body  id="idbody" >
+        <div class="container">
+
+      <h:form class="form-signin" >
+        <h2 class="form-signin-heading">Login</h2>
+        <div class="login-wrap">
+            <div class="user-login-info">
+                
+                 <div class="input-group m-bot15">
+                                <span class="input-group-addon btn-white"><i class="fa fa-user"></i></span>
+                                <h:inputText value="#{utilisateurController.login}" class="form-control"/>
+                            </div>
+                 <div class="input-group m-bot15">
+                <span class="input-group-addon btn-white"><i class="fa fa-envelope"></i></span>
+                <h:inputSecret value="#{utilisateurController.motdepasse}" class="form-control"/>
+            </div>  </div>
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"/> Remember me
+                
+            </label>
+            <h:commandButton value="Se Connecter" action="#{utilisateurController.authentification}" class="btn btn-lg btn-login btn-block"/>  
+        </div>
+      </h:form>
+
+    </div>
+        <script>#{utilisateurController.errorMessage}</script>
+    </h:body>
+    
+    
+    
+    
+    
+    
+    
+
+</html>
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPlanformationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPlanformationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{planformationController.selected.id}" title="#{bundle.EditPlanformationTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditPlanformationLabel_annee}" for="annee" />
+                    <h:inputText id="annee" value="#{planformationController.selected.annee}" title="#{bundle.EditPlanformationTitle_annee}" />
+                    <h:outputLabel value="#{bundle.EditPlanformationLabel_volumeHoraire}" for="volumeHoraire" />
+                    <h:inputText id="volumeHoraire" value="#{planformationController.selected.volumeHoraire}" title="#{bundle.EditPlanformationTitle_volumeHoraire}" />
+                    <h:outputLabel value="#{bundle.EditPlanformationLabel_budgetTotal}" for="budgetTotal" />
+                    <h:inputText id="budgetTotal" value="#{planformationController.selected.budgetTotal}" title="#{bundle.EditPlanformationTitle_budgetTotal}" />
+                </h:panelGrid>
+                <h:commandLink action="#{planformationController.update}" value="#{bundle.EditPlanformationSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPlanformationViewLink}"/>
+                <br />
+                <h:commandLink action="#{planformationController.prepareList}" value="#{bundle.EditPlanformationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPlanformationIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

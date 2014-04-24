@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEvaluationFormationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_sessionf}" for="sessionf" />
+                    <h:selectOneMenu id="sessionf" value="#{evaluationFormationController.selected.sessionf}" title="#{bundle.CreateEvaluationFormationTitle_sessionf}" >
+                        <f:selectItems value="#{sessionfController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_dateEvaluationformation}" for="dateEvaluationformation" />
+                    <h:inputText id="dateEvaluationformation" value="#{evaluationFormationController.selected.dateEvaluationformation}" title="#{bundle.CreateEvaluationFormationTitle_dateEvaluationformation}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_objectif}" for="objectif" />
+                    <h:inputText id="objectif" value="#{evaluationFormationController.selected.objectif}" title="#{bundle.CreateEvaluationFormationTitle_objectif}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_annimation}" for="annimation" />
+                    <h:inputText id="annimation" value="#{evaluationFormationController.selected.annimation}" title="#{bundle.CreateEvaluationFormationTitle_annimation}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_materielFormation}" for="materielFormation" />
+                    <h:inputText id="materielFormation" value="#{evaluationFormationController.selected.materielFormation}" title="#{bundle.CreateEvaluationFormationTitle_materielFormation}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_qualite}" for="qualite" />
+                    <h:inputText id="qualite" value="#{evaluationFormationController.selected.qualite}" title="#{bundle.CreateEvaluationFormationTitle_qualite}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_repas}" for="repas" />
+                    <h:inputText id="repas" value="#{evaluationFormationController.selected.repas}" title="#{bundle.CreateEvaluationFormationTitle_repas}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_attente}" for="attente" />
+                    <h:inputText id="attente" value="#{evaluationFormationController.selected.attente}" title="#{bundle.CreateEvaluationFormationTitle_attente}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_observation}" for="observation" />
+                    <h:inputText id="observation" value="#{evaluationFormationController.selected.observation}" title="#{bundle.CreateEvaluationFormationTitle_observation}" />
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_employe}" for="employe" />
+                    <h:selectOneMenu id="employe" value="#{evaluationFormationController.selected.employe}" title="#{bundle.CreateEvaluationFormationTitle_employe}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEvaluationFormationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{evaluationFormationController.selected.id}" title="#{bundle.CreateEvaluationFormationTitle_id}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{evaluationFormationController.create}" value="#{bundle.CreateEvaluationFormationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{evaluationFormationController.prepareList}" value="#{bundle.CreateEvaluationFormationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEvaluationFormationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

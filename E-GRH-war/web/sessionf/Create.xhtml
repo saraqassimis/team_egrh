@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSessionfTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSessionfLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{sessionfController.selected.id}" title="#{bundle.CreateSessionfTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateSessionfLabel_dateFin}" for="dateFin" />
+                    <h:inputText   class="form-control datep" id="dateFin" value="#{sessionfController.selected.dateFin}" title="#{bundle.CreateSessionfTitle_dateFin}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSessionfLabel_dateDebut}" for="dateDebut" />
+                    <h:inputText  class="form-control datep"  id="dateDebut" value="#{sessionfController.selected.dateDebut}" title="#{bundle.CreateSessionfTitle_dateDebut}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSessionfLabel_formation}" for="formation" />
+                    <h:selectOneMenu id="formation" value="#{sessionfController.selected.formation}" title="#{bundle.CreateSessionfTitle_formation}" >
+                        <f:selectItems value="#{formationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSessionfLabel_planformation}" for="planformation" />
+                    <h:selectOneMenu id="planformation" value="#{sessionfController.selected.planformation}" title="#{bundle.CreateSessionfTitle_planformation}" >
+                        <f:selectItems value="#{planformationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sessionfController.create()}" value="#{bundle.CreateSessionfSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{sessionfController.prepareList}" value="#{bundle.CreateSessionfShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/planformation/List" value="listPlanFormation"/>
+            </h:form>
+            <script>
+                 $(function ()
+    {
+       
+         $( ".datep" ).datepicker({ 
+             format: "dd/mm/yyyy"
+         });
+         
+          $(".form_datetime-component").datetimepicker({
+    format: "dd MM yyyy - hh:ii"
+});
+    });
+             
+             
+             
+
+
+            </script>
+        </ui:define>
+    </ui:composition>
+
+</html>

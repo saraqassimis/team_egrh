@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEvaluationemployeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{evaluationemployeController.selected.id}" title="#{bundle.EditEvaluationemployeTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_date_evaluation}" for="date_evaluation" />
+                    <h:inputText id="date_evaluation" value="#{evaluationemployeController.selected.date_evaluation}" title="#{bundle.EditEvaluationemployeTitle_date_evaluation}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_nom_complet}" for="nom_complet" />
+                    <h:inputText id="nom_complet" value="#{evaluationemployeController.selected.nom_complet}" title="#{bundle.EditEvaluationemployeTitle_nom_complet}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_qualite}" for="qualite" />
+                    <h:inputText id="qualite" value="#{evaluationemployeController.selected.qualite}" title="#{bundle.EditEvaluationemployeTitle_qualite}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_rythme_travail}" for="rythme_travail" />
+                    <h:inputText id="rythme_travail" value="#{evaluationemployeController.selected.rythme_travail}" title="#{bundle.EditEvaluationemployeTitle_rythme_travail}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_autonomie}" for="autonomie" />
+                    <h:inputText id="autonomie" value="#{evaluationemployeController.selected.autonomie}" title="#{bundle.EditEvaluationemployeTitle_autonomie}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_capacite_adaptation}" for="capacite_adaptation" />
+                    <h:inputText id="capacite_adaptation" value="#{evaluationemployeController.selected.capacite_adaptation}" title="#{bundle.EditEvaluationemployeTitle_capacite_adaptation}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_discretion}" for="discretion" />
+                    <h:inputText id="discretion" value="#{evaluationemployeController.selected.discretion}" title="#{bundle.EditEvaluationemployeTitle_discretion}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_esprit_inniciative}" for="esprit_inniciative" />
+                    <h:inputText id="esprit_inniciative" value="#{evaluationemployeController.selected.esprit_inniciative}" title="#{bundle.EditEvaluationemployeTitle_esprit_inniciative}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_methode_orde}" for="methode_orde" />
+                    <h:inputText id="methode_orde" value="#{evaluationemployeController.selected.methode_orde}" title="#{bundle.EditEvaluationemployeTitle_methode_orde}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_ponctualite}" for="ponctualite" />
+                    <h:inputText id="ponctualite" value="#{evaluationemployeController.selected.ponctualite}" title="#{bundle.EditEvaluationemployeTitle_ponctualite}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_relation_interpersonnelles}" for="relation_interpersonnelles" />
+                    <h:inputText id="relation_interpersonnelles" value="#{evaluationemployeController.selected.relation_interpersonnelles}" title="#{bundle.EditEvaluationemployeTitle_relation_interpersonnelles}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_sens_responsabilite}" for="sens_responsabilite" />
+                    <h:inputText id="sens_responsabilite" value="#{evaluationemployeController.selected.sens_responsabilite}" title="#{bundle.EditEvaluationemployeTitle_sens_responsabilite}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_communication}" for="communication" />
+                    <h:inputText id="communication" value="#{evaluationemployeController.selected.communication}" title="#{bundle.EditEvaluationemployeTitle_communication}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_commentaire}" for="commentaire" />
+                    <h:inputText id="commentaire" value="#{evaluationemployeController.selected.commentaire}" title="#{bundle.EditEvaluationemployeTitle_commentaire}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_note}" for="note" />
+                    <h:inputText id="note" value="#{evaluationemployeController.selected.note}" title="#{bundle.EditEvaluationemployeTitle_note}" />
+                    <h:outputLabel value="#{bundle.EditEvaluationemployeLabel_employe}" for="employe" />
+                    <h:selectOneMenu id="employe" value="#{evaluationemployeController.selected.employe}" title="#{bundle.EditEvaluationemployeTitle_employe}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{evaluationemployeController.update}" value="#{bundle.EditEvaluationemployeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEvaluationemployeViewLink}"/>
+                <br />
+                <h:commandLink action="#{evaluationemployeController.prepareList}" value="#{bundle.EditEvaluationemployeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEvaluationemployeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

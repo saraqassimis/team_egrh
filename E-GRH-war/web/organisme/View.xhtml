@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOrganismeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOrganismeLabel_id}"/>
+                    <h:outputText value="#{organismeController.selected.id}" title="#{bundle.ViewOrganismeTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewOrganismeLabel_nom}"/>
+                    <h:outputText value="#{organismeController.selected.nom}" title="#{bundle.ViewOrganismeTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewOrganismeLabel_description}"/>
+                    <h:outputText value="#{organismeController.selected.description}" title="#{bundle.ViewOrganismeTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewOrganismeLabel_adresse}"/>
+                    <h:outputText value="#{organismeController.selected.adresse}" title="#{bundle.ViewOrganismeTitle_adresse}"/>
+                    <h:outputText value="email"/>
+                    <h:outputText value="#{organismeController.selected.email}" title="email"/>
+                    <h:outputText value="tel"/>
+                    <h:outputText value="#{organismeController.selected.tel}" title="tel"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{organismeController.destroyAndView}" value="#{bundle.ViewOrganismeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOrganismeEditLink}"/>
+                <br />
+                <h:commandLink action="#{organismeController.prepareCreate}" value="#{bundle.ViewOrganismeCreateLink}" />
+                <br />
+                <h:commandLink action="#{organismeController.prepareList}" value="#{bundle.ViewOrganismeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOrganismeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

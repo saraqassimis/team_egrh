@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFormationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFormationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{formationController.selected.id}" title="#{bundle.EditFormationTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditFormationLabel_typeformation}" for="typeformation" />
+                    <h:selectOneMenu id="typeformation" value="#{formationController.selected.typeformation}" title="#{bundle.EditFormationTitle_typeformation}" >
+                        <f:selectItems value="#{typeFormationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFormationLabel_typesousformation}" for="typesousformation" />
+                    <h:selectOneMenu id="typesousformation" value="#{formationController.selected.typesousformation}" title="#{bundle.EditFormationTitle_typesousformation}" >
+                        <f:selectItems value="#{typesousFormationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFormationLabel_libelle}" for="libelle" />
+                    <h:inputText id="libelle" value="#{formationController.selected.libelle}" title="#{bundle.EditFormationTitle_libelle}" />
+                    <h:outputLabel value="#{bundle.EditFormationLabel_prixParPersonne}" for="prixParPersonne" />
+                    <h:inputText id="prixParPersonne" value="#{formationController.selected.prixParPersonne}" title="#{bundle.EditFormationTitle_prixParPersonne}" />
+                    <h:outputLabel value="#{bundle.EditFormationLabel_duree}" for="duree" />
+                    <h:inputText id="duree" value="#{formationController.selected.duree}" title="#{bundle.EditFormationTitle_duree}" />
+                    <h:outputLabel value="#{bundle.EditFormationLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{formationController.selected.description}" title="#{bundle.EditFormationTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditFormationLabel_organisme}" for="organisme" />
+                    <h:selectOneMenu id="organisme" value="#{formationController.selected.organisme}" title="#{bundle.EditFormationTitle_organisme}" >
+                        <f:selectItems value="#{organismeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFormationLabel_categorie}" for="categorie" />
+                    <h:selectOneMenu id="categorie" value="#{formationController.selected.categorie}" title="#{bundle.EditFormationTitle_categorie}" >
+                        <f:selectItems value="#{categorieController.itemsAvailableSelectOne}"/>
+                        <f:ajax render="competence" event="change" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFormationLabel_competence}" for="competence" />
+                    <h:selectOneMenu id="competence" value="#{formationController.selected.competence}" title="#{bundle.EditFormationTitle_competence}" >
+                        <f:selectItems value="#{formationController.detComp}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{formationController.update}" value="#{bundle.EditFormationSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFormationViewLink}"/>
+                <br />
+                <h:commandLink action="#{formationController.prepareList}" value="#{bundle.EditFormationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFormationIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

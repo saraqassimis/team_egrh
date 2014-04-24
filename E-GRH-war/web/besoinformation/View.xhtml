@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBesoinformationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBesoinformationLabel_id}"/>
+                    <h:outputText value="#{besoinformationController.selected.id}" title="#{bundle.ViewBesoinformationTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewBesoinformationLabel_libelle}"/>
+                    <h:outputText value="#{besoinformationController.selected.libelle}" title="#{bundle.ViewBesoinformationTitle_libelle}"/>
+                    <h:outputText value="#{bundle.ViewBesoinformationLabel_competenceADevelloppe}"/>
+                    <h:outputText value="#{besoinformationController.selected.competenceADevelloppe}" title="#{bundle.ViewBesoinformationTitle_competenceADevelloppe}"/>
+                    <h:outputText value="#{bundle.ViewBesoinformationLabel_resultatsAttendus}"/>
+                    <h:outputText value="#{besoinformationController.selected.resultatsAttendus}" title="#{bundle.ViewBesoinformationTitle_resultatsAttendus}"/>
+                    <h:outputText value="#{bundle.ViewBesoinformationLabel_commentaire}"/>
+                    <h:outputText value="#{besoinformationController.selected.commentaire}" title="#{bundle.ViewBesoinformationTitle_commentaire}"/>
+                    <h:outputText value="#{bundle.ViewBesoinformationLabel_dateDemande}"/>
+                    <h:outputText value="#{besoinformationController.selected.dateDemande}" title="#{bundle.ViewBesoinformationTitle_dateDemande}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBesoinformationLabel_employe}"/>
+                    <h:outputText value="#{besoinformationController.selected.employe}" title="#{bundle.ViewBesoinformationTitle_employe}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{besoinformationController.destroyAndView}" value="#{bundle.ViewBesoinformationDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBesoinformationEditLink}"/>
+                <br />
+                <h:commandLink action="#{besoinformationController.prepareCreate}" value="#{bundle.ViewBesoinformationCreateLink}" />
+                <br />
+                <h:commandLink action="#{besoinformationController.prepareList}" value="#{bundle.ViewBesoinformationShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBesoinformationIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

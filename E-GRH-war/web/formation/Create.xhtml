@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFormationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{formationController.selected.id}" title="#{bundle.CreateFormationTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_typeformation}" for="typeformation" />
+                    <h:selectOneRadio id="typeformation" value="#{formationController.selected.typeformation}" title="#{bundle.CreateFormationTitle_typeformation}" >
+                        <f:selectItems value="#{typeFormationController.itemsAvailableSelectOne}"/>
+                        <f:ajax render="typesousformation" event="change" />
+                    </h:selectOneRadio>
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_typesousformation}" for="typesousformation" />
+                    <h:selectOneMenu id="typesousformation" value="#{formationController.selected.typesousformation}" title="#{bundle.CreateFormationTitle_typesousformation}" >
+                        <f:selectItems value="#{formationController.typeSFormation}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_libelle}" for="libelle" />
+                    <h:inputText id="libelle" value="#{formationController.selected.libelle}" title="#{bundle.CreateFormationTitle_libelle}" />
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_prixParPersonne}" for="prixParPersonne" />
+                    <h:inputText id="prixParPersonne" value="#{formationController.selected.prixParPersonne}" title="#{bundle.CreateFormationTitle_prixParPersonne}" />
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_duree}" for="duree" />
+                    <h:inputText id="duree" value="#{formationController.selected.duree}" title="#{bundle.CreateFormationTitle_duree}" />
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_description}" for="description" />
+                    <h:inputTextarea id="description" value="#{formationController.selected.description}" title="#{bundle.CreateFormationTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_organisme}" for="organisme" />
+                    <h:selectOneMenu id="organisme" value="#{formationController.selected.organisme}" title="#{bundle.CreateFormationTitle_organisme}" >
+                        <f:selectItems value="#{organismeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_categorie}" for="categorie" />
+                    <h:selectOneMenu id="categorie" value="#{formationController.selected.categorie}" title="#{bundle.CreateFormationTitle_categorie}" >
+                        <f:selectItems value="#{categorieController.itemsAvailableSelectOne}"/>
+                        <f:ajax render="competence" event="change" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFormationLabel_competence}" for="competence" />
+                    <h:selectOneMenu id="competence" value="#{formationController.selected.competence}" title="#{bundle.CreateFormationTitle_competence}" >
+                        <f:selectItems value="#{formationController.detComp}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <div class="text-center">
+                    <a href="#myModal" data-toggle="modal" class="btn btn-success" >
+                        budget prévisionnel intra-Entreprise  inclus
+                    </a>
+                    <a href="#myModal2" data-toggle="modal" class="btn btn-success" >
+                        budget prévisionnel Extra-Entreprise  inclus
+                    </a>
+
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                    <h4 class="modal-title">budget prévisionnel intra-Entreprise </h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <h:form >
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6">les coûts de la formation </label>
+                                             <h:outputText value="Saisie" />
+                                        </div>	
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6">versements fiscalisés obligatoires</label>
+                                            <h:outputText value="124DH" /> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6">coût des équipements de la formation </label>
+                                            <h:outputText value="7894 DH" />
+                                        </div>
+                                    </h:form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal2" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                    <h4 class="modal-title">budget prévisionnel intra-Entreprise </h4>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <h:form >
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6">les coûts de la formation </label>
+                                            <h:outputText value="Saisie" />
+                                        </div>	
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6">versements fiscalisés obligatoires</label>
+                                            <h:outputText value="125478 DH" /> </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6">frais de déplacements et d’hébergement induits </label>
+                                            <h:outputText value="4845 DH" /> </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6">coût des équipements de laformation </label>
+                                            <h:outputText value="854 DH" />
+                                        </div>
+                                    </h:form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h:commandLink action="#{formationController.create}" value="#{bundle.CreateFormationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{formationController.prepareList}" value="#{bundle.CreateFormationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFormationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

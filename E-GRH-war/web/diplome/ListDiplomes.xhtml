@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDiplomeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDiplomeEmpty}" rendered="#{diplomeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{diplomeController.items.rowCount > 0}">
+                      <div class="content-box-large">
+                   <div class="panel-body">
+                       <h:form>
+                        <fieldset>
+                            <legend>Liste des diplomes</legend><br></br>
+                             <div  class="well">
+                                  <h:link  class="btn btn-lg btn-block btn-default" outcome="/employe/List" ><label>List des employés </label></h:link>
+                                        <h:commandLink  class="btn btn-lg btn-block btn-default" action="#{diplomeController.prepareCreate}"><label>Ajouter un diplome </label></h:commandLink>
+               </div> 
+                            
+                            <br /> <br />
+
+                            <h:dataTable  value="#{diplomeController.getAllDiplomeOfEmploye(employeController.selected)}" var="item" border="0" styleClass="table table-bordered table-striped dynamic-table">
+
+                            <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiplomeTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiplomeTitle_denomination}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.denomination}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiplomeTitle_etablissement}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etablissement}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiplomeTitle_anne}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.anne}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiplomeTitle_niveauEtude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.niveauEtude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiplomeTitle_employe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.employe}"/>
+                        </h:column>
+                         <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink class="btn btn-default" action="#{diplomeController.prepareView}" ><i class=" glyphicon glyphicon-eye-open " style="font-size:20px;"/></h:commandLink>
+                                    <h:outputText value="     "/>
+                                    <h:outputText value="     "/>
+                                    <h:commandLink class="btn btn-primary" action="#{diplomeController.editeView(item)}"><i class=" glyphicon glyphicon-pencil " style="font-size:20px;"/></h:commandLink>
+                                    <h:outputText value="     "/>
+                                    <h:outputText value="     "/>
+                                    
+                                    <h:commandLink  class="btn btn-danger" action="#{diplomeController.delete(item)}"><i class=" glyphicon glyphicon-remove " style="font-size:20px;"/>
+                                     
+                                    </h:commandLink>
+
+
+                                </h:column>
+                            </h:dataTable>
+
+                        </fieldset>
+                        </h:form>
+                    </div>
+                </div>
+                </h:panelGroup>
+               <div  class="well">
+                                  <h:link  class="btn btn-lg btn-block btn-default" outcome="/employe/List" ><label>List des employés </label></h:link>
+                                        <h:commandLink  class="btn btn-lg btn-block btn-default" action="#{diplomeController.prepareCreate}"><label>Ajouter un diplome </label></h:commandLink>
+               </div> 
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
