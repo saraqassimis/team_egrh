@@ -183,9 +183,9 @@ public String editeView(Emploiprecedent ep){
     }
 
     public DataModel getItems() {
-        if (items == null) {
+        
             items = getPagination().createPageDataModel();
-        }
+       
         return items;
     }
 

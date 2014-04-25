@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Calendrier"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+
+            <div class="row">
+                <aside class="col-lg-9">
+                    <section class="panel">
+                        <div class="panel-body">
+
+
+
+                            <div id="calendar" class="has-toolbar"></div>
+                        </div>
+                    </section>
+                </aside>
+                <h:form  prependId="false">
+                    <aside class="col-lg-3">
+
+
+                        <div class="text-center">
+                            <a href="#myModal" data-toggle="modal" class="btn btn-success">
+                                Ajouter Session de formation
+                            </a>
+                            <br></br>
+                            <a href="#myModal-2" data-toggle="modal" class="btn btn-danger">
+                                Ajouter une inscription 
+                            </a>
+
+                            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                            <h4 class="modal-title">Form Tittle</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <div class="form-group">
+                                                <label for="titre">Title</label>
+                                                <h:selectOneMenu id="formation" value="#{sessionfController.selected.formation}" class="form-control" title="#{bundle.CreateSessionfTitle_formation}" >
+                                                    <f:selectItems value="#{formationController.itemsAvailableSelectOne}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="heureDebut">Date debut </label>
+                                                <h:inputText class="form-control datep" id="heureDebut" value="#{sessionfController.selected.dateDebut}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                </h:inputText>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="heureFin">Date fin </label>
+
+                                                <h:inputText class="form-control datep" id="heureFin" value="#{sessionfController.selected.dateFin}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                </h:inputText>
+                                            </div>
+
+
+                                            <h:commandLink  styleClass="btn btn-success" action="#{sessionfController.createS()}" >Créer</h:commandLink>
+
+                                            
+
+                                            <script>
+                                            
+                                                $(".datep").datepicker({
+                                                    format: "dd/mm/yyyy"
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                   <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal-2" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                            <h4 class="modal-title">Form Tittle</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <div class="form-group">
+                                                <label for="titre"> Choissisez la session de formation :</label>
+                                                
+                                                <h:selectOneMenu id="session" value="#{inscriptionController.selected.session}" class="form-control" title="#{bundle.CreateInscriptionTitle_session}" >
+                        <f:selectItems value="#{sessionfController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                                            </div>
+                                           
+                                            
+                                            <h:commandLink  styleClass="btn btn-success" action="#{inscriptionController.createSchedule()}" >Créer</h:commandLink>
+
+                                           
+                                            <script>
+                                            
+                                                $(".datep").datepicker({
+                                                    format: "dd/mm/yyyy"
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>    
+
+                    </aside>
+                </h:form>
+            </div>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

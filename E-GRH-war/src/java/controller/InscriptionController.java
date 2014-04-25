@@ -136,6 +136,19 @@ public class InscriptionController implements Serializable {
             return null;
         }
     }
+     public String createSchedule() {
+        try {
+            
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("InscriptionCreated"));
+            current = new Inscription();
+           selectedItemIndex = -1;
+           return "Schedule";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
 
     public String prepareEdit() {
         current = (Inscription) getItems().getRowData();

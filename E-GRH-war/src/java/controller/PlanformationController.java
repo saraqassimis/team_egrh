@@ -185,9 +185,9 @@ public class PlanformationController implements Serializable {
     }
 
     public DataModel getItems() {
-        if (items == null) {
+        
             items = getPagination().createPageDataModel();
-        }
+        
         return items;
     }
 

@@ -55,6 +55,15 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="PlanningSchedule"/>
+                            </f:facet>
+                             <h:commandLink action="#{sessionfController.sessionListPlanFormationS(item)}" >
+                                 <i class=" glyphicon glyphicon-calendar " style="font-size:15px;"/>
+                                 </h:commandLink>
+                          
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink action="#{planformationController.prepareView}" value="#{bundle.ListPlanformationViewLink}"/>

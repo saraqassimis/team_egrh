@@ -7,6 +7,8 @@ import controller.util.PaginationHelper;
 import session.SessionfFacade;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -36,6 +38,41 @@ public class SessionfController implements Serializable {
     public SessionfController() {
     }
     
+     public String listSessionFschedule() {
+        String listEVT = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        boolean test = false;
+        for (Iterator it = ejbFacade.findAll().iterator(); it.hasNext();) {
+            test = true;
+            Sessionf s = (Sessionf) it.next();
+           
+                String start = "new Date(" + (s.getDateDebut().getYear() + 1900)
+                        + ", " + s.getDateDebut().getMonth()
+                        + ", " + s.getDateDebut().getDate()
+                        + ", " + s.getDateDebut().getHours()
+                        + ", " + s.getDateDebut().getMinutes() + ")";
+                String end = "new Date(" + (s.getDateFin().getYear() + 1900)
+                        + ", " + s.getDateFin().getMonth()
+                        + ", " + s.getDateFin().getDate()
+                        + ", " + s.getDateFin().getHours()
+                        + ", " + s.getDateFin().getMinutes() + ")";
+                listEVT += "{";
+                listEVT += "title: '" + s.getFormation().getLibelle() + "',";
+                listEVT += "start: " + start + ",";
+                listEVT += "end: " + end + ",";
+                listEVT += "allDay: false,";
+                listEVT += "url: 'javascript: showModal(" + s.getId() +");'";
+                listEVT += "},";
+            
+        }
+        if (test) {
+            listEVT = listEVT.substring(0, listEVT.length() - 1);
+        }
+        test = false;
+        return listEVT;
+    }
+ 
+    
  public List<Sessionf> getAllSessionOfPlanF ()
     {
         return getFacade().loadSessionf(planformation);
@@ -55,7 +92,18 @@ public String sessionListPlanFormation ( Planformation p){
    planformation = p;
   return "/sessionf/ListSession";
     
-}  
+} 
+public String sessionListPlanFormationS ( Planformation p){
+   planformation = p;
+  return "/sessionf/Schedule";
+    
+} 
+
+ public List<Sessionf> getSessionfFromPlanF()
+    {
+        return ejbFacade.loadSessionf(current.getPlanformation());
+              
+    }
 public String listSessions(){
     
      getFacade().loadSessionf(planformation);
@@ -143,6 +191,20 @@ public String InscriptionOfSession (Sessionf f)
            current = new Sessionf();
              selectedItemIndex = -1;
              return "Create";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+     public String createS() {
+        try {
+             current.setPlanformation(planformation);
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SessionfCreated"));
+           current = new Sessionf();
+             selectedItemIndex = -1;
+             return "Schedule";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
